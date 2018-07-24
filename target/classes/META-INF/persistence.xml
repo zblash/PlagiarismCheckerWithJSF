@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="plagcheckerUnit" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>com.mycompany.plagchecker.Model.User</class>
+    <class>com.mycompany.plagchecker.Model.Role</class>
+    <class>com.mycompany.plagchecker.Model.Pricing</class>
+    <class>com.mycompany.plagchecker.Model.Report</class>
+    <class>com.mycompany.plagchecker.Model.Settings</class>
+    <class>com.mycompany.plagchecker.Model.Contact</class>
+    <class>com.mycompany.plagchecker.Model.OrderPricing</class>
+    <class>com.mycompany.plagchecker.Model.Bank</class>
+    <properties>
+      <property name="eclipselink.jdbc.platform" value="org.eclipse.persistence.platform.database.MySQLPlatform"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/deneme?useSSL=false&amp;requireSSL=false"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.password" value="admin"/>
+      <property name="eclipselink.ddl-generation" value="none"/>
+      <property name="eclipselink.logging.level" value="FINE"/>
+    </properties>
+  </persistence-unit>
+</persistence>

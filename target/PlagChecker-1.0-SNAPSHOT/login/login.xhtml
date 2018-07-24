@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    
+    <h:body>
+        <ui:composition template="/templates/Template.xhtml">
+            <ui:define name="content-header">#{msg.LoginPageHeader}</ui:define>
+        <ui:define name="content">
+            <div class="login-wrap">
+			<div class="sign-in">
+				<h:form id="panel">
+                        <p:growl id="msgs"/>
+                        <p:outputLabel styleClass="form-header" value="#{msg.Signin}"/>
+                                    <div class="form-group">
+					<p:outputLabel for="username" class="label" value="#{msg.username}" />
+					<p:inputText id="username" class="form-control" value="#{userBean.username}" required="true" requiredMessage="#{msg.usernameRequiredError}"/>
+                                    </div>
+
+                                    <div class="form-group">
+					<p:outputLabel for="password" class="label" value="#{msg.password}" />
+                                        <p:password id="password" value="#{userBean.password}" class="form-control" required="true" requiredMessage="#{msg.passwordRequiredError}"/>
+                                    </div>
+                                    <div class="foot-lnk">
+                                        <p:link value="#{msg.passwordReset}" outcome="/forgotpassword" />
+                                    </div>
+                                    <div class="form-group">
+                                        <p:commandButton value="#{msg.Submit}" update="panel" styleClass="form-button" ajax="true" action="#{userBean.login}" />
+    
+                                    </div>
+                                    
+                        </h:form>
+                      
+			</div>
+			<div class="sign-up">
+                            <h:form id="panell">
+                        <p:growl id="msgss"/>
+                        <p:outputLabel styleClass="form-header" value="#{msg.Signup}"/>
+				<div class="form-group">
+					<p:outputLabel for="susername" class="label" value="#{msg.username}" />
+					<p:inputText id="susername" class="form-control" value="#{userBean.username}" required="true" requiredMessage="#{msg.usernameRequiredError}">
+                                            <f:validator validatorId="SigninUsernameValidator"/>
+                                        </p:inputText> </div>
+                                    <div class="form-group">
+					<p:outputLabel for="firstname" class="label" value="#{msg.firstname}" />
+					<p:inputText id="firstname" class="form-control" value="#{userBean.firstname}" required="true" requiredMessage="#{msg.firstnameRequiredError}"/>
+                                    </div>
+                                    <div class="form-group">
+					<p:outputLabel for="lastname" class="label" value="#{msg.lastname}" />
+					<p:inputText id="lastname" class="form-control" value="#{userBean.lastname}" required="true" requiredMessage="#{msg.lastnameRequiredError}" />
+                                    </div>
+                                    <div class="form-group">
+					<p:outputLabel for="email" class="label" value="#{msg.email}" />
+                                        <p:inputText id="email" class="form-control" value="#{userBean.email}" required="true" requiredMessage="#{msg.emailRequiredError}">
+                                            <f:validator validatorId="SigninEmailValidator"/>
+                                        </p:inputText>
+                                    </div>
+                                    <div class="form-group">
+					<p:outputLabel for="spassword" class="label" value="#{msg.password}" />
+                                        <p:password id="spassword" value="#{userBean.password}" class="form-control" required="true" requiredMessage="#{msg.passwordValidatorReq}"/>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <p:commandButton value="#{msg.Signup}" update="panell" styleClass="form-button" ajax="false" action="#{userBean.signup}" />
+    
+                                    </div>
+				<div class="hr"></div>
+			</h:form>	
+			</div>
+            </div>
+               
+        </ui:define>
+        </ui:composition>
+        
+    </h:body>
+</html>

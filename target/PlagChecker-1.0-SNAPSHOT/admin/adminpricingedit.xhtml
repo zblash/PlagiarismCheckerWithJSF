@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+        <f:metadata>
+    <f:event listener="#{adminpricingeditBean.init()}" type="preRenderView" />
+    </f:metadata>
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+
+    <h:body>
+        <ui:composition template="/templates/adminTemplate.xhtml">
+            <ui:define name="page-header"><i class="fa fa-money nav_icon"></i>Fiyatlandırmayı Düzenle</ui:define>
+            <ui:define name="page-content">
+
+ 		<h:form id="editform">
+                    <p:growl id="msgs" />
+  <div class="form-group">
+      <a href="#">Kullanıcının Geçmiş Kontrollerini Gör</a>
+      <p:outputLabel for="creditt" value="Kredi" />
+      <p:inputText value="#{adminpricingeditBean.credit}" styleClass="form-control" id="creditt" />
+  </div>
+  <div class="form-group">
+    <p:outputLabel for="pricee" value="Fiyat" />
+      <p:inputText value="#{adminpricingeditBean.price}" styleClass="form-control" id="pricee" />
+  </div>
+   <div class="form-group">
+    <p:outputLabel for="firsttabb" value="Birinci Alan" />
+      <p:inputText value="#{adminpricingeditBean.firsttab}" styleClass="form-control" id="firsttabb" />
+  </div>
+   <div class="form-group">
+    <p:outputLabel for="secondtabb" value="Ikinci Alan" />
+      <p:inputText value="#{adminpricingeditBean.secondtab}" styleClass="form-control" id="secondtabb" />
+  </div>
+  <div class="form-group">
+    <p:outputLabel for="thirdtabb" value="Üçüncü Alan" />
+      <p:inputText value="#{adminpricingeditBean.thirdtab}" styleClass="form-control" id="thirdtabb" />
+  </div>
+  <div class="form-group">
+    <p:outputLabel for="fourthtabb" value="Dördüncü Alan" />
+      <p:inputText value="#{adminpricingeditBean.fourthtab}" styleClass="form-control" id="fourthtabb" />
+  </div>
+                    
+        <p:commandButton class="form-control" update="editform" value="Düzenle" ajax="true" actionListener="#{adminpricingeditBean.edit()}">
+            <f:param name="pricingid" value="#{adminpricingeditBean.pricingid}" />
+        </p:commandButton>
+
+</h:form>
+        </ui:define>
+        </ui:composition>
+    </h:body>
+    
+</html>

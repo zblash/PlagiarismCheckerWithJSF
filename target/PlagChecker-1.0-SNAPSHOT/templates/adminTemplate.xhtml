@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<f:view locale="#{userView.locale}">
+    <h:head>
+        <title>Admin</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<h:outputStylesheet name="/admin/css/style.css" />
+<h:outputStylesheet name="/admin/css/font-awesome.css" />
+    </h:head>
+
+    <h:body>
+ <div class="header">
+   <div class="logo"><h2>PlagiarismChecker</h2></div>
+   <div class="banner"><i class="fa fa-user nav_icon"></i> <p:outputLabel value="Hosgeldin #{user.username} (#{user.role.name})"/></div>
+   <div class="header-right">
+       
+       <p:link outcome="/index.html">Çıkış Yap</p:link></div>
+  </div>
+        
+  <div class="sidebar">
+<ul id="accordion">
+  <li><div><p:link outcome="/index.html"><i class="fa fa-dashboard nav_icon"></i>Anasayfa</p:link></div> </li>
+ 
+  <li><div><i class="fa fa-users nav_icon"></i>Kullanıcılar<span class="fa fa-sort-down"></span></div>
+    <ul>
+      <li><p:link outcome="/admin/index.xhtml"><i class="fa fa-users nav_icon"></i>Tüm Kullanıcıları Gör</p:link></li>
+      <li><p:link outcome="/admin/createuser.xhtml"><i class="fa fa-user-plus nav_icon"></i>Kullanıcı Ekle</p:link></li>
+      <li><p:link outcome="/index.xhtml"><i class="fa fa-book nav_icon"></i>Yapılan Kontroller</p:link></li>
+    </ul>
+  </li>
+    <li><div><i class="fa fa-user-secret nav_icon"></i>Yetkililer<span class="fa fa-sort-down"></span></div>
+    <ul>
+      <li><p:link outcome="/admin/employeeindex.xhtml"><i class="fa fa-user-secret nav_icon"></i>Tüm Yetkilileri Gör</p:link></li>
+      <li><p:link outcome="/admin/createemployee.xhtml"><i class="fa fa-user-plus nav_icon"></i>Yetkili Ekle</p:link></li>
+    </ul>
+  </li>
+  <li><div><i class="fa fa-money nav_icon"></i>Fiyatlandırma<span class="fa fa-sort-down"></span></div>
+    <ul>
+      <li><p:link outcome="/admin/pricing.xhtml"><i class="fa fa-money nav_icon"></i>Fiyatları Gör</p:link></li>
+      <li><p:link outcome="/admin/createpricing.xhtml"><i class="fa fa-plus-square nav_icon"></i>Yeni Fiyatlandırma Ekle</p:link></li>
+    </ul>
+  </li>
+    <li><div><i class="fa fa-bank nav_icon"></i>Banka Hesapları<span class="fa fa-sort-down"></span></div>
+    <ul>
+      <li><p:link outcome="/admin/bankindex.xhtml"><i class="fa fa-bank nav_icon"></i>Banka Hesaplarını Gör</p:link></li>
+      <li><p:link outcome="/admin/createbankaccount.xhtml"><i class="fa fa-plus-square nav_icon"></i>Yeni Banka Hesabı Ekle</p:link></li>
+    </ul>
+  </li>
+    <li><div><p:link outcome="/admin/settings.html"><i class="fa fa-plus-square nav_icon"></i>Site Ayarları</p:link></div>
+  </li>
+    <li><div><p:link outcome="/admin/messageindex.html"><i class="fa fa-plus-square nav_icon"></i>Gelen Mesajlar</p:link></div>
+  </li>
+</ul>
+</div>
+        <div class="navigation">
+            <ui:insert name="page-header">Header</ui:insert>
+        </div>
+<div class="content">
+    <ui:insert name="page-content">Content</ui:insert>
+</div>
+        <div class="footer">
+            <div class="footer-right">PlagiarismChecker By Yusuf Can Çelik</div>
+        </div>
+<script>
+$("#accordion > li > div").click(function(){
+
+  if(!$(this).next().is(':visible')) {
+    $('#accordion ul').slideUp(300);
+  }
+  $(this).next().slideToggle(300);
+});
+</script>
+
+    </h:body>
+    
+</f:view>
+</html>

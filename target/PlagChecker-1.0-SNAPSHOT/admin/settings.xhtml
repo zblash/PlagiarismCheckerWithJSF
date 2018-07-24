@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+
+    <h:body>
+        <ui:composition template="/templates/adminTemplate.xhtml">
+            <ui:define name="page-header"><i class="fa fa-pencil nav_icon"></i>Site Ayarları</ui:define>
+            <ui:define name="page-content">
+
+    <h:form id="editform" enctype="multipart/form-data">
+    <p:growl id="msgs" />
+  <div class="form-group">
+    <p:outputLabel for="titlee" value="Site Başlığı" />
+      <p:inputText value="#{adminsettingsBean.title}" styleClass="form-control" id="titlee" />
+  </div>
+  <div class="form-group">
+      <p:outputLabel for="keywordss" value="Keywords" />
+      <p:chips value="#{adminsettingsBean.keywords}" styleClass="form-control" id="keywordss" />
+  </div>
+  <div class="form-group">
+    <p:outputLabel for="descriptionn" value="Site Açıklaması" />
+      <p:inputText value="#{adminsettingsBean.description}" styleClass="form-control" id="descriptionn" />
+  </div>
+   <div class="form-group">
+    <p:outputLabel for="author" value="Site Author Bilgisi" />
+      <p:inputText value="#{adminsettingsBean.author}" styleClass="form-control" id="author" />
+  </div>
+   <div class="form-group">
+    <p:outputLabel for="facebookk" value="Facebook Adresi" />
+      <p:inputText value="#{adminsettingsBean.facebook}" styleClass="form-control" id="facebookk" />
+  </div>
+  <div class="form-group">
+    <p:outputLabel for="twitterr" value="Twitter Adresi" />
+      <p:inputText value="#{adminsettingsBean.twitter}" styleClass="form-control" id="twitterr" />
+  </div>
+      <div class="form-group">
+    <p:outputLabel for="googlekeyy" value="Google Key" />
+      <p:inputText value="#{adminsettingsBean.googlekey}" styleClass="form-control" id="googlekeyy" />
+  </div>
+   <h:inputFile  value="#{adminsettingsBean.file}" validator="AdminUploadValidator" />
+    <h:commandButton class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only form-control" actionListener="#{adminsettingsBean.edit}" value="Düzenle">
+    <f:ajax execute="@all" render="@form"/>
+</h:commandButton> 
+    </h:form>
+        
+        </ui:define>
+        </ui:composition>
+    </h:body>
+    
+</html>
