@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/adminTemplate.xhtml">
+            <ui:define name="page-header"><i class="fa fa-users nav_icon"></i>Üyeler</ui:define>
+            <ui:define name="page-content">
+
+     <h:form>
+         
+         <p:dataTable id="usertable" selection="#{adminindexBean.selectedRow}" selectionMode="single" rowKey="#{userr.userid}" paginator="true" rows="20" widgetVar="usersTable" var="userr" value="#{adminindexBean.users}" filteredValue="#{adminindexBean.filteredUsers}">
+        <f:facet name="header">
+            <p:outputPanel>
+                <h:outputText value="Bütün Kayıtlarda Ara" />
+                <p:inputText id="globalFilter" onkeyup="PF('usersTable').filter()" style="width:150px" placeholder="Ara"/>
+            </p:outputPanel>
+        </f:facet>
+             <p:column sortBy="#{userr.userid}" headerText="Id">
+           
+            <h:outputText value="#{userr.userid}" />
+        </p:column>
+ 
+        <p:column filterBy="#{userr.username}" headerText="Kullanıcı Adı">
+          
+            <h:outputText value="#{userr.username}" />
+        </p:column>
+ 
+        <p:column colspan="2" filterBy="#{userr.email}" headerText="E-mail"  >
+            <h:outputText value="#{userr.email}" />
+        </p:column>
+ 
+        <p:column filterBy="#{userr.firstname}" headerText="Adı">
+            <h:outputText value="#{userr.firstname}" />
+        </p:column>
+             <p:column headerText="Soyadı" filterBy="#{userr.lastname}">
+            <h:outputText value="#{userr.lastname}" />
+        </p:column>
+             <p:column headerText="Kalan Kredi" sortBy="#{userr.credit_limit}">
+            <h:outputText value="#{userr.credit_limit}" />
+        </p:column>
+        <p:column headerText="Aktif" sortBy="#{userr.isenabled}">
+            <c:if test="#{userr.isenabled == true}">
+            <h:outputText value="Evet" />
+            </c:if>
+            <c:if test="#{userr.isenabled != true}">
+            <h:outputText value="Hayır" />
+            </c:if>
+        </p:column><p:column headerText="Düzenle" sortBy="#{userr.isenabled}">
+            <p:link value="Düzenle" outcome="/admin/edituser.xhtml">
+                <f:param name="user" value="#{userr.userid}" />
+            </p:link>
+        </p:column>
+        <f:facet name="footer">
+        Toplam üye sayısı - #{fn:length(adminindexBean.users)}
+    </f:facet>
+    </p:dataTable>
+  
+    <p:contextMenu for="usertable">
+        
+        <p:menuitem value="Sil" update="usertable" icon="ui-icon-close" actionListener="#{adminindexBean.removeUser}"/>
+    </p:contextMenu>
+ 
+                            </h:form>
+        </ui:define>
+        </ui:composition>
+    </h:body>
+    
+</html>
+

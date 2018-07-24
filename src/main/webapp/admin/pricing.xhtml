@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+
+    <h:body>
+        <ui:composition template="/templates/adminTemplate.xhtml">
+            <ui:define name="page-header"><i class="fa fa-money nav_icon"></i>Fiyat Listesi</ui:define>
+            <ui:define name="page-content">
+                <ui:repeat value="#{adminpricingBean.pricinglist}" var="pricing">
+                <div class="pricing-columns">
+                  <ul>
+                      <li class="pricing-header">#{pricing.credit} Kredi</li>
+                      <li class="pricing-price">#{pricing.price} TL</li>
+                    <li>#{pricing.firsttab}</li>
+                    <li>#{pricing.secondtab}</li>
+                    <li>#{pricing.thirdtab}</li>
+                    <li>#{pricing.fourthtab}</li>
+                    <li class="pricing-footer"><p:link value="Düzenle" outcome="/admin/adminpricingedit.xhtml">
+                            <f:param name="pricingid" value="#{pricing.pricingid}" />
+                        </p:link></li>
+                  </ul>
+                </div>
+                </ui:repeat>
+                
+        </ui:define>
+        </ui:composition>
+    </h:body>
+    
+</html>

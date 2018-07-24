@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/Template.xhtml">
+            <ui:define name="content-header">
+                #{msg.PricingPage}
+            </ui:define>
+            <ui:define name="content">
+                <div class="pricing-content" align="center"><center>
+                        <h:form id="panel">
+                            <p:growl id="msg" showSummary="true" showDetail="true" />
+                <ui:repeat value="#{pricingBean.pricinglist}" var="pricing">
+                <div class="pricing-columns">
+                  <ul>
+                    <li class="pricing-header">#{pricing.credit} Kredi</li>
+                    <li class="pricing-price">#{pricing.price} TL</li>
+                    <li>#{pricing.firsttab}</li>
+                    <li>#{pricing.secondtab}</li>
+                    <li>#{pricing.thirdtab}</li>
+                    <li>#{pricing.fourthtab}</li>
+                    <li class="pricing-footer"><p:commandButton value="#{msg.Order}" update="panel" actionListener="#{pricingBean.buy(pricing.pricingid)}"/></li>
+                  </ul>
+                </div>
+                </ui:repeat>
+                            </h:form>
+                    </center></div>
+                        <div class="index-content">
+                <div class="con-2">
+                    <p:graphicImage name="images/1.png" styleClass="center-block" />
+                    <h2>ÖZGÜNLEŞTİRİCİ</h2>
+		    <p>Makalenizi buradan bir kaç saniye içerisinde özgün hale getirebilirsiniz!</p>
+		</div>
+		<div class="con-2">
+                    <p:graphicImage name="images/2.png" styleClass="center-block" />
+                    <h2>YENİ ÜYELİK</h2>
+                    <p>Hala üyemiz değilseniz buraya tıklayarak bize katılabilirsiniz.</p>
+		</div>
+		<div class="con-2">
+                    <p:graphicImage name="images/3.png" styleClass="center-block" />
+                    <h2>ÖDEME BİLDİRİMİ</h2>
+                    <p>Satın almak istediginiz paketlerin ödemelerini buradan bildirebilirsiniz.</p>
+		</div>
+		<div class="con-2">
+                    <p:graphicImage name="images/4.png" styleClass="center-block" />
+                    <h2>BANKA HESAPLARI</h2>
+                    <p>Banka hesaplarımıza bu bölümden ulaşabilirsiniz.</p>
+		</div>
+            </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

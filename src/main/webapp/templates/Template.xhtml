@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<f:view locale="#{userView.locale}">
+    <h:head>
+        
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="description" content="#{indexBean.description}"/>
+        <meta name="keywords" content="#{indexBean.keywords}"/>
+        <meta name="author" content="#{indexBean.author}"/>
+        <h:outputStylesheet name="/css/style.css"/>
+        <h:outputStylesheet name="/admin/css/font-awesome.css"/>
+        <title>#{indexBean.title}</title>
+        
+    </h:head>
+
+    <h:body>
+        <div class="kapsul">
+        <div id="top">
+            <h:form>
+            <h:commandLink action="#{userView.actionturkish}" style="margin: -20px 0 0 30px;position: absolute">
+            <h:graphicImage library="images" name="tr.png" style="width: 25px;" />
+            </h:commandLink>
+            <h:commandLink action="#{userView.actionenglish}" style="margin: -20px 0 0 60px;position: absolute">
+            <h:graphicImage library="images" name="en.png" style="width: 25px;" />
+            </h:commandLink>
+            </h:form>
+            <div class="logo">
+                <p:graphicImage id="image" alt="logo" url="/logo"/>
+            </div>
+             
+            <div class="menu">
+                <ul>
+                    <li><p:link value="#{msg.HomePage}" outcome="/index" /></li>
+                    <li><p:link value="#{msg.PlagiarismCheckerPage}" outcome="/user/plagiarismchecker" /></li>
+                    <li><p:link value="#{msg.PricingPage}" outcome="/pricing" /></li>
+                    <li><p:link value="#{msg.BankPage}" outcome="/bankaccounts" /></li>
+                    <li><p:link value="#{msg.ContactPage}" outcome="/contact" /></li>
+                    <c:if test="#{empty user}">
+                    <li><p:link value="#{msg.LoginPage}" outcome="/login/login" styleClass="loginp" /></li>
+                    </c:if>
+                    <c:if test="#{not empty user}">
+                        <c:if test="#{user.role.name eq 'admin'}">
+                          <li><p:link value="#{msg.AdminPage}" outcome="/admin/index.xhtml" styleClass="loginp" /></li>   
+                        </c:if>
+                        <c:if test="#{user.role.name ne 'admin'}">
+                    <li><p:link value="#{msg.ProfilePage}" outcome="/user/profile.xhtml" styleClass="loginp" /></li>
+                    </c:if>
+                        <li>
+                        <h:form>
+                    <p:commandButton action="#{userBean.logout}" ajax="false" value="Çıkış" class="loginp" /> 
+                        </h:form></li>
+                    </c:if>
+                </ul>
+            </div>
+        </div>
+
+        <div id="content" class="center_content">
+            <div class="container-header">
+                <ui:insert name="content-header">Welcome</ui:insert>
+            </div>
+            <ui:insert name="content">Content</ui:insert>
+        </div>
+
+        <footer id="bottom">
+            <div class="bottom-left">
+            <p:outputLabel value="#{msg.Copyright}" style="float:left;color:#7f8c8d;
+    font-size: 13px;font-family:'Ubuntu';" />
+            </div>
+            <div class="bottom-right">
+                <p:link href="https://www.facebook.com/" target="blank">
+                <i class="fa fa-envelope-square bottom-icons"></i>
+            </p:link>
+            <p:link href="https://www.facebook.com/" target="blank" >
+                <i class="fa fa-twitter-square bottom-icons"></i>
+            </p:link>
+            <p:link href="https://www.facebook.com/" target="blank">
+                <i class="fa fa-facebook-square bottom-icons"></i>
+            </p:link>
+      
+            
+        </div>
+    </footer>
+        </div>
+       
+    </h:body>
+</f:view>
+</html>

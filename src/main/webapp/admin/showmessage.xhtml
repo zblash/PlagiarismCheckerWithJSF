@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+        <f:metadata>
+    <f:event listener="#{adminmessagecontentBean.init()}" type="preRenderView" />
+    </f:metadata>
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+
+    <h:body>
+        <ui:composition template="/templates/adminTemplate.xhtml">
+            <ui:define name="page-header"><i class="fa fa-pencil nav_icon"></i>Mesaj İçeriği</ui:define>
+            <ui:define name="page-content">
+                <div class="report-title">
+                    <div style="float:left;width: 33%">
+                        <h:outputText value="İsim - #{adminmessagecontentBean.name}"/>
+                    </div>
+                    <div style="float:left;width: 33%">
+                        <center>
+                        <h:outputText value=" "/>
+                        </center>
+                    </div>   
+                    <div style="float:right;width: 33%">
+                        <div style="float:right">
+                        <h:outputText value="Email - #{adminmessagecontentBean.email}"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="report-content"><h:outputText value="#{adminmessagecontentBean.message}"/></div>
+               
+        </ui:define>
+        </ui:composition>
+    </h:body>
+    
+</html>

@@ -1,0 +1,219 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+html, body{
+    font-family:'Montserrat-Regular';
+    font-size: 100%;
+    background:#F3F3F4;
+    overflow-x: hidden;
+    color: #999;
+}
+@font-face{
+  font-family:'Montserrat-Regular';
+  src:url("#{resource['/admin/fonts/Montserrat-Regular.ttf']}") format('truetype');
+}
+@font-face{
+  font-family: 'Muli-Regular';
+  src:url("#{resource['/admin/fonts/Muli-Regular.ttf']}") format('truetype');
+}
+body a{
+  color: #999;
+  text-decoration: none;
+}
+.header{
+  width: 100%;
+  height: 4em;
+  margin: 0;
+  background-color: #fff;
+}
+.logo {
+  width: 17.8%;
+  background-color: #186ba0;
+  text-align: center;
+  color: #fff;
+  height: 3.1em;
+  padding-top: 0.9em;
+  float: left;
+}
+.banner{
+  float: left;
+  font-size: 18px;
+  padding: 1.1em;
+}
+.banner i {
+    margin-right: 10px;
+}
+.header-right{
+  float: right;
+  font-size: 18px;
+  padding: 1.1em;
+  font-family: 'Montserrat-Regular' !important;
+}
+.header-right label {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.sidebar{
+  width: 17.8%;
+  float:left;
+  height: 100vh;
+  background-color: #fff;
+}
+#accordion {
+  list-style: none;
+  padding: 0 0 0 0;
+  width: 100%;
+}
+#accordion div {
+  display: block;
+  cursor: pointer;
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  font-size: 16px;
+}
+#accordion i{
+  float: left;
+  margin-right: 15px;
+}
+#accordion span.fa-sort-down{
+  float: right;
+  margin-top: -3px; 
+}
+#accordion li a {
+  transition: 0.5s;
+  text-decoration: none;
+}
+#accordion li a:hover {
+  transition: 0.5s;
+  color: #186ba0;
+  text-decoration: none;
+}
+#accordion ul {
+  list-style: none;
+  padding: 0 0 0 0;
+  display: none;
+}
+#accordion ul li {
+  font-weight: normal;
+  cursor: auto;
+
+  border-bottom: 1px solid #ddd;
+  padding: 12px 12px 12px 35px;
+}
+#accordion a {
+  text-decoration: none;
+}
+#accordion a:hover {
+  text-decoration: underline;
+}
+.navigation {
+  padding: 0.75%;
+  margin: 1.1% 1.1% 0 1.1%;
+  float: right;
+  width: 78%;
+  background-color: #fff;  
+}
+.navigation i {
+    margin-right: 5px;
+}
+.content {
+  padding: 0.75%;
+  margin: 1.1%;
+  float: right;
+  width: 78%;
+  background-color: #fff;
+}
+.form-group {
+    padding: 5px;
+    margin-bottom: 10px;
+}
+.form-group label {
+    font-family:'Montserrat-Regular';
+}
+.form-control{
+    font-family:'Montserrat-Regular';
+    width: 99.5% !important;
+    border-radius:5px;
+    padding: 8px 6px !important;
+    border:1px solid #ddd;
+    color: #555;
+    margin-top: 3px !important;
+    font-size: 14px;
+}
+.ui-chips-container {
+    width: 100% !important;
+}
+
+.pricing-columns{
+    float: left;
+    width: 32.7%;
+    padding: 0.3%;
+}
+.pricing-columns ul {
+    width: 100%;
+    border: 1px solid #eee;
+    transition: 0.5s;
+    list-style: none;
+    transition: 0.5s;
+}
+.pricing-columns ul:hover {
+    box-shadow: 0 8px 12px 0 rgba(0,0,0,0.2);
+    transition: 0.5s;
+}
+.pricing-columns ul li {
+    padding: 20px;
+    text-align: center;
+    font-size: 16px;
+    border-bottom: 1px solid #eee;
+}
+.pricing-header{
+    background-color: #186ba0;
+    color: #fff;
+   
+}
+.pricing-price {
+    background-color: #eee;
+    color: #000;
+}
+.pricing-footer{
+    background-color: #eee;
+    
+}
+.pricing-footer a{
+    font-family: 'Montserrat-Regular' !important;
+    background-color: #2196de;
+    color: #fff;
+    padding: 10px 25px;
+}
+.report-title{
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.report-content{
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3%;
+    margin-bottom: 0.75%;
+    padding:1%;
+    border: 2px solid #eee;
+    border-radius: 10px;
+}
+.report-content-footer{
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+.footer{
+    float:left;
+    width: 100%;
+    bottom: 0;
+    background-color: #333;
+}
+.footer-right{
+    float: right;
+    padding: 25px;
+}

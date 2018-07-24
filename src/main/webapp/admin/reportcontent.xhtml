@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+        <f:metadata>
+    <f:event listener="#{adminreportcontentBean.init()}" type="preRenderView" />
+    </f:metadata>
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+
+    <h:body>
+        <ui:composition template="/templates/adminTemplate.xhtml">
+            <ui:define name="page-header"><i class="fa fa-pencil nav_icon"></i>Rapor İçerigi</ui:define>
+            <ui:define name="page-content">
+                <div class="report-title">
+                    <div style="float:left;width: 33%">
+                        <h:outputText value="Kullanıcı Adı - #{adminreportcontentBean.username}"/>
+                    </div>
+                    <div style="float:left;width: 33%">
+                        <center>
+                        <h:outputText value="Baslık - #{adminreportcontentBean.title}"/>
+                        </center>
+                    </div>   
+                    <div style="float:left;width: 33%">
+                        <div style="float:right">
+                        <h:outputText value="Kopya Oranı - #{adminreportcontentBean.plagiarism}%"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="report-content"><h:outputText value="#{adminreportcontentBean.content}"/></div>
+                <div class="report-content-footer">
+                    <h:outputText value="Toplam Kelime Sayısı - #{adminreportcontentBean.words}"/>
+                </div>
+               
+        </ui:define>
+        </ui:composition>
+    </h:body>
+    
+</html>

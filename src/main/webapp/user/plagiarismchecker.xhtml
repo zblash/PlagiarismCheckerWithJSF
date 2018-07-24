@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"      
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/Template.xhtml">
+            <ui:define name="content-header">
+                #{msg.PlagiarismCheckerPage}
+            </ui:define>
+            <ui:define name="content">
+                <h:form id="plagform">
+                    <p:growl id="msg" showDetail="true" sticky="true" />
+                <div class="plagcontent">
+                    <p:inputText class="plagtext" placeholder="Rapor Başlığı" value="#{plagiarismCheckerBean.title}" />
+                    <p:inputTextarea value="#{plagiarismCheckerBean.article}" id="articletext" class="plagtextarea" counter="display" maxlength="1000" counterTemplate="{0} characters remaining." autoResize="false"/>
+                <h:outputText id="display" />
+                <hr/>
+                <p:fileUpload fileUploadListener="#{plagiarismCheckerBean.handleFileUpload}" mode="advanced" id="uploader"
+                              update="articletext" multiple="false" auto="true" label="Belge Seçin" sizeLimit="100000" invalidFileMessage="#{msg.invalidFileMessage}" invalidSizeMessage="#{msg.invalidSizeMessage}" allowTypes="/(\.|\/)(txt|doc|docx)$/" />
+                <p:outputLabel value="Sadece doc, docx ve txt dosyaları kabul edilir." />
+                <p:commandButton value="#{msg.Checker}" style="width: 300px;height: 75px;font-size: 24px;font-family: 'Ubuntu';float: right" onclick="PF('pbAjax').start();PF('scanbutton').disable();" icon="ui-icon-refresh" actionListener="#{plagiarismCheckerBean.checker}" update="plagform" widgetVar="scanbutton" >
+                    <f:ajax onevent="function(data) { if(data.status === 'success') document.getElementById('plagform:resultdiv').style.display = 'none'; document.getElementById('plagform:preresultdiv').style.display = 'block';}" />
+                </p:commandButton>
+                </div>
+                <div class="plagright">
+                    <div class="creditdiv">
+                        <p:outputLabel id="creditlabel" styleClass="creditlabel" value="Kalan Krediniz - #{user.credit_limit}"/>
+                        <p:outputLabel style="float:left" value="Her sorgulama için 1 kredi harcarsınız." />
+                    </div>
+                    <p:outputPanel id="preresultdiv" style="margin: 0 auto;width: 100%;display: none;padding-top: 120px;"><center>
+                    <h2><p:outputLabel value="#{msg.Scanning}" /></h2>
+                    <p:progressBar widgetVar="pbAjax" styleClass="animated" style="color:#000 !important"  ajax="true" value="#{plagiarismCheckerBean.loadpercent}" labelTemplate="{value}%"  >
+                    <f:ajax onevent="function(data) { if(data.status === 'success') document.getElementById('plagform:resultdiv').style.display = 'block';document.getElementById('plagform:preresultdiv').style.display = 'none';}" />
+                    <p:ajax event="complete" oncomplete="PF('scanbutton').enable()" update="resultlabel creditlabel" />
+                    </p:progressBar>
+                        </center></p:outputPanel>
+                    <p:outputPanel id="resultdiv" style="margin: 0 auto;width: 100%;display: none;padding-top: 120px;"><center>
+                            <h2><p:outputLabel value="#{msg.PlagiarismRate}" /></h2>
+                            <p:outputLabel id="resultlabel" value="#{plagiarismCheckerBean.resultpercent} %" />
+                            </center></p:outputPanel>
+                </div>
+                </h:form>
+                
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

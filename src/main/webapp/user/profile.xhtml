@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"      
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+    <h:head>
+        
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/Template.xhtml">
+            <ui:define name="content-header">
+                #{msg.ProfilePage}
+            </ui:define>
+            <ui:define name="content">
+
+                <div class="profile-wrap">
+                    <c:if test="#{user.isenabled == false}" >
+                    <p:outputLabel value="Hesabınızı aktifleştirin" />
+                    </c:if>
+                    <c:if test="#{user.isenabled == true}">
+                
+                       <div class="profile-reports-div">
+                           
+                
+                            <h:form> 
+                       <p:outputLabel value="Geçmiş Raporlar" styleClass="profile-reports-label" />
+                           <p:dataTable var="report" value="#{profileBean.reports}" rows="5" id="profiletable"
+                         paginator="true"
+                         paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                         >
+ 
+    <p:column headerText="Title">
+        <h:outputText value="#{report.title}" />
+    </p:column>
+ 
+    <p:column headerText="Words">
+        <h:outputText value="#{report.words}" />
+    </p:column>
+ 
+     <p:column headerText="Plagiarism">
+        <h:outputText value="#{report.plagiarism}" />
+    </p:column>
+ 
+    <p:column headerText="Date">
+        <h:outputText value="#{report.date}" >
+                <f:convertDateTime pattern="dd.MM.yyyy" />
+        </h:outputText>
+    </p:column>
+
+</p:dataTable>
+                        
+     <p:outputLabel styleClass="profile-reports-footer" value="In total there are #{fn:length(profileBean.reports)} reports."/>
+        </h:form> 
+      </div>
+                <div class="profile-credit-div">
+                    <p:outputLabel id="creditlabel" styleClass="profile-creditlabel" value="Kalan Krediniz - #{user.credit_limit}"/>
+                    <p:outputLabel style="float:right;width: 320px;" value="Daha fazla kredi yüklemek için fiyatlandırma sayfasından size uygun paketi seçebilirsiniz."/>
+                </div>
+                        <div class="profile-edit-div">
+                      <h:form id="panel">
+                        <p:growl id="msgs"/>
+                        <p:outputLabel styleClass="form-header" value="#{msg.update}"/>
+                                    <div class="form-group">
+					<p:outputLabel for="firstname" class="label" value="#{msg.firstname}" />
+					<p:inputText id="firstname" class="form-control" value="#{profileBean.firstname}" required="true" requiredMessage="#{msg.usernameRequiredError}"/>
+                                    </div>
+                                    <div class="form-group">
+					<p:outputLabel for="lastname" class="label" value="#{msg.lastname}" />
+					<p:inputText id="lastname" class="form-control" value="#{profileBean.lastname}" required="true" requiredMessage="#{msg.usernameRequiredError}"/>
+                                    </div>
+                                    <div class="form-group">
+					<p:outputLabel for="password" class="label" value="#{msg.password}" />
+                                        <p:password id="password" value="#{profileBean.password}"  match="password2" class="form-control" required="true" requiredMessage="#{msg.passwordRequiredError}"/>
+                                    </div>
+                                    <div class="form-group">
+					<p:outputLabel for="password2" class="label" value="#{msg.passwordagain}" />
+                                        <p:password id="password2" value="#{profileBean.password}" class="form-control" required="true" requiredMessage="#{msg.passwordRequiredError}"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:commandButton value="#{msg.update}" update="panel" styleClass="form-button" ajax="true" actionListener="#{profileBean.edit()}"/>
+    
+                                    </div>
+                                    
+                        </h:form>
+                        </div>
+                </c:if>
+                </div>
+                
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
